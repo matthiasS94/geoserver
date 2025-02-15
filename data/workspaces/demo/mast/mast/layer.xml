@@ -1,0 +1,16 @@
+<layer>
+  <name>mast</name>
+  <id>LayerInfoImpl-7844dfc8:195094d40b5:-7ff0</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-7844dfc8:195094d40b5:-8000</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7844dfc8:195094d40b5:-7ff1</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-02-15 11:32:02.522 UTC</dateCreated>
+</layer>
