@@ -1,20 +1,21 @@
 # geoserver
 
-Simple geoserver with WFS/WMS service
-
-## Structure
-
-```
-geoserver
-```
+Simple Geoserver with WFS/WMS service and OGC API Features.
 
 ## Sample Data
 
-Sample file downloaded from [Infrageomatics/Open Infrastructure Map](https://www.infrageomatics.com/products/osm-export)
+Two simple points (Munich and Berlin), stored in the sample_data/init.sql.
+This data is automigrated to Postgres/PostGIS database and connected via geoserver_setup/setup.sh script to Geoserver. Following steps are done via Geoserver REST API:
+
+- Create Workspace: test_workspace
+- Create Datastore: postgis_store
+- Publish Layer (WMS/WFS): my_table
+- Enable the OGC API Features Plugin
+- Puplish OGC API Feature Collection: my_table
 
 ## Geoserver as Docker
 
-Used Version: [2.26.1](https://github.com/kartoza/docker-geoserver)
+Used Version: [2.27.1](docker.osgeo.org/geoserver:2.27.1)
 
 ## Run setup
 
@@ -35,24 +36,11 @@ http://localhost:8080/geoserver
 - Login to geoserver:
   - user: admin
   - password: geoserver
-- Crate "Workspace":
-  - Name: demo
-  - Namespace URI needs to be integrated as part of the WFS/WMS-Service-Layer in QGIS/OpenLayers
-  - optional: Set Workspace as Default
-- Configure the "Workspace" to enable WFS/WMS as service
-  - select the workspace and enable necessary Services (WFS/WFS)
-- Create "Store" within the "Worskpace" demo
-  - "Store" could be Databases, Files etc.
-  - easiest way (included into this repo): simple shapefile ([mast](./data/demo_files/mast))
-- Create "Layer" to publish as WFS/WMS
-  - Select "Layer" in the tree (left)
-  - Click "Add a new Layer"
-  - Select the "demo:mast" Store
-  - Publish the Layer
-  - Calculate Bounding Boxes of Layer by given Store
-- Preview Layer and get WFS/WMS-URI
+- Preview Layer and use them:
   - Select "Layer-Preview"
-  - Select the Layer "mast"
+  - Select the Layer "my_table"
   - Select "All Formats" -> "WFS" -> "GeoJSON"
-  - Use the URI as QGIS/OpenLayers Adress: http://localhost:8080/geoserver/demo/{wfs/wms}
+  - Use the URI as QGIS/OpenLayers Adress:
+    - WMS/WFS: http://localhost:8080/geoserver/test_workspace/ows
+    - OGC API Features: http://localhost:8080/geoserver/ogc/features/v1
   - for specific features: use the preview URL
